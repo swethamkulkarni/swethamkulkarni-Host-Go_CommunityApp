@@ -9,8 +9,8 @@ import Link from "next/link";
 import { PlusCircle } from "lucide-react";
 
 const mockBookings: Booking[] = [
-    { id: 'b1', userId: 'u1', spaceId: 's1', eventId: 'e1', startTime: new Date('2024-08-15T10:00:00'), endTime: new Date('2024-08-15T12:00:00'), status: 'confirmed', totalCost: 50, spaceName: 'The Creative Loft', eventTitle: 'Beginner\'s Yoga Workshop', image: "https://placehold.co/100x100.png" },
-    { id: 'b2', userId: 'u1', spaceId: 's2', eventId: 'e2', startTime: new Date('2024-08-20T19:00:00'), endTime: new Date('2024-08-20T22:00:00'), status: 'pending', totalCost: 45, spaceName: 'Rooftop Garden Oasis', eventTitle: 'Indie Film Screening', image: "https://placehold.co/100x100.png" },
+    { id: 'b1', userId: 'u1', spaceId: 's1', eventId: 'e1', startTime: new Date('2024-08-15T10:00:00'), endTime: new Date('2024-08-15T12:00:00'), status: 'confirmed', totalCost: 0, spaceName: 'The Creative Loft', eventTitle: 'Beginner\'s Yoga Workshop', image: "https://placehold.co/100x100.png" },
+    { id: 'b2', userId: 'u1', spaceId: 's2', eventId: 'e2', startTime: new Date('2024-08-20T19:00:00'), endTime: new Date('2024-08-20T22:00:00'), status: 'pending', totalCost: 0, spaceName: 'Rooftop Garden Oasis', eventTitle: 'Indie Film Screening', image: "https://placehold.co/100x100.png" },
 ];
 
 const mockEvents: Partial<Event>[] = [

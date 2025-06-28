@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
-import { Calendar as CalendarIcon, Clock, MapPin, Tag, User, DollarSign } from "lucide-react";
+import { Calendar as CalendarIcon, Clock, MapPin, Tag, Ticket } from "lucide-react";
 import type { Event, Space } from "@/lib/types";
 
 const mockSpace: Space = {
@@ -19,7 +19,7 @@ const mockEvent: Event = {
     spaceId: '1', 
     datetime: new Date('2024-08-15T10:00:00'), 
     duration: 2, 
-    price: 25, 
+    price: 0, 
     tags: ['yoga', 'wellness', 'fitness', 'beginner'], 
     image: '/placeholder.png', 
     space: mockSpace 
@@ -86,9 +86,9 @@ export default function EventDetailPage({ params }: { params: { id: string } }) 
                         </div>
                     </div>
                      <div className="flex items-start gap-4">
-                        <DollarSign className="w-5 h-5 mt-1 text-muted-foreground" />
+                        <Ticket className="w-5 h-5 mt-1 text-muted-foreground" />
                         <div>
-                            <p className="font-semibold">${event.price > 0 ? event.price : 'Free'}</p>
+                            <p className="font-semibold">Free to Attend</p>
                         </div>
                     </div>
                     <Button className="w-full mt-6">Register for this Event</Button>

@@ -10,7 +10,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { Badge } from "@/components/ui/badge";
-import { CalendarIcon, Sparkles, Tag, X } from "lucide-react";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { CalendarIcon, Sparkles, Tag, X, PartyPopper } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { suggestKeywords } from "@/ai/flows/smart-keyword-suggestions";
 
@@ -77,7 +78,14 @@ export default function CreateEventPage() {
                 <CardContent>
                     <form className="space-y-8">
                         <div className="space-y-4">
-                             <h3 className="font-headline text-xl font-semibold border-b pb-2">Event Details</h3>
+                            <h3 className="font-headline text-xl font-semibold border-b pb-2">Event Details</h3>
+                            <Alert>
+                                <PartyPopper className="h-4 w-4" />
+                                <AlertTitle>Community First!</AlertTitle>
+                                <AlertDescription>
+                                    All events on Third Space Finder are free to ensure they are accessible to everyone in the community.
+                                </AlertDescription>
+                            </Alert>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div className="space-y-2">
                                     <Label htmlFor="event-title">Event Title</Label>
@@ -108,6 +116,7 @@ export default function CreateEventPage() {
                             <Label>AI Keyword Suggestions</Label>
                             <div className="p-4 border rounded-lg bg-secondary/50">
                                 <p className="text-sm text-muted-foreground mb-4">Add a title and description, then let our AI suggest relevant keywords to help people find your event.</p>
+
                                 <Button type="button" onClick={handleSuggestKeywords} disabled={isSuggesting}>
                                     <Sparkles className="mr-2 h-4 w-4" />
                                     {isSuggesting ? 'Thinking...' : 'Suggest Keywords'}
