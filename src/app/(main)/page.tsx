@@ -12,16 +12,16 @@ import type { Space, Event } from "@/lib/types";
 
 const mockSpaces: Space[] = [
   { id: '1', name: 'The Creative Loft', description: '', address: '', postcode: 'E2 8AA', borough: 'Hackney', capacity: 50, amenities: ['wifi', 'projector'], hourlyRate: 100, images: ['https://placehold.co/600x400.png'], ownerId: '', rating: 4.8, category: 'Creative Studio' },
-  { id: '2', name: 'Rooftop Garden Oasis', description: '', address: '', postcode: 'SE1 9SG', borough: 'Southwark', capacity: 80, amenities: ['wifi', 'kitchen'], hourlyRate: 150, images: ['https://placehold.co/600x400.png'], ownerId: '', rating: 4.9, category: 'Outdoor Space' },
-  { id: '3', name: 'Modern Tech Hub', description: '', address: '', postcode: 'EC1Y 8QP', borough: 'Islington', capacity: 120, amenities: ['wifi', 'projector', 'parking'], hourlyRate: 200, images: ['https://placehold.co/600x400.png'], ownerId: '', rating: 4.7, category: 'Meeting Room' },
-  { id: '4', name: 'Community Hall', description: '', address: '', postcode: 'W11 2ES', borough: 'Kensington', capacity: 100, amenities: ['kitchen', 'parking'], hourlyRate: 75, images: ['https://placehold.co/600x400.png'], ownerId: '', rating: 4.5, category: 'Community Space' },
+  { id: '2', name: 'Rooftop Garden Oasis', description: '', address: '', postcode: 'SE1 9SG', borough: 'Southwark', capacity: 80, amenities: ['wifi', 'kitchen'], hourlyRate: 150, images: ['https://placehold.co/600x401.png'], ownerId: '', rating: 4.9, category: 'Outdoor Space' },
+  { id: '3', name: 'Modern Tech Hub', description: '', address: '', postcode: 'EC1Y 8QP', borough: 'Islington', capacity: 120, amenities: ['wifi', 'projector', 'parking'], hourlyRate: 200, images: ['https://placehold.co/600x402.png'], ownerId: '', rating: 4.7, category: 'Meeting Room' },
+  { id: '4', name: 'Community Hall', description: '', address: '', postcode: 'W11 2ES', borough: 'Kensington', capacity: 100, amenities: ['kitchen', 'parking'], hourlyRate: 75, images: ['https://placehold.co/600x403.png'], ownerId: '', rating: 4.5, category: 'Community Space' },
 ];
 
 const mockEvents: Event[] = [
   { id: '1', title: 'Beginner\'s Yoga Workshop', description: '', category: 'Fitness', organizerId: '', spaceId: '1', datetime: new Date('2024-08-15T10:00:00'), duration: 2, price: 0, tags: ['yoga', 'wellness', 'fitness'], image: 'https://placehold.co/600x400.png', space: mockSpaces[0] },
-  { id: '2', title: 'Indie Film Screening', description: '', category: 'Cultural', organizerId: '', spaceId: '2', datetime: new Date('2024-08-20T19:00:00'), duration: 3, price: 0, tags: ['film', 'cinema', 'arts'], image: 'https://placehold.co/600x400.png', space: mockSpaces[1] },
-  { id: '3', title: 'Startup Pitch Night', description: '', category: 'Tech', organizerId: '', spaceId: '3', datetime: new Date('2024-08-22T18:30:00'), duration: 4, price: 0, tags: ['tech', 'networking', 'business'], image: 'https://placehold.co/600x400.png', space: mockSpaces[2] },
-  { id: '4', title: 'Local Pottery Market', description: '', category: 'Social', organizerId: '', spaceId: '4', datetime: new Date('2024-09-01T11:00:00'), duration: 6, price: 0, tags: ['market', 'crafts', 'community'], image: 'https://placehold.co/600x400.png', space: mockSpaces[3] },
+  { id: '2', title: 'Indie Film Screening', description: '', category: 'Cultural', organizerId: '', spaceId: '2', datetime: new Date('2024-08-20T19:00:00'), duration: 3, price: 0, tags: ['film', 'cinema', 'arts'], image: 'https://placehold.co/600x401.png', space: mockSpaces[1] },
+  { id: '3', title: 'Startup Pitch Night', description: '', category: 'Tech', organizerId: '', spaceId: '3', datetime: new Date('2024-08-22T18:30:00'), duration: 4, price: 0, tags: ['tech', 'networking', 'business'], image: 'https://placehold.co/600x402.png', space: mockSpaces[2] },
+  { id: '4', title: 'Local Pottery Market', description: '', category: 'Social', organizerId: '', spaceId: '4', datetime: new Date('2024-09-01T11:00:00'), duration: 6, price: 0, tags: ['market', 'crafts', 'community'], image: 'https://placehold.co/600x403.png', space: mockSpaces[3] },
 ];
 
 const AmenityIcon = ({ amenity }: { amenity: string }) => {

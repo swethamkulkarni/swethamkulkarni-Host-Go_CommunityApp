@@ -3,8 +3,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Calendar } from "@/components/ui/calendar";
 import Image from "next/image";
-import { Star, MapPin, Users, Wifi, Projector, ParkingSquare, DollarSign } from "lucide-react";
+import { Star, MapPin, Users, Wifi, Projector, ParkingSquare } from "lucide-react";
 import type { Space } from "@/lib/types";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
 // Mock data, in a real app this would come from a database
 const mockSpace: Space = {
@@ -17,12 +18,13 @@ const mockSpace: Space = {
     capacity: 50, 
     amenities: ['wifi', 'projector', 'kitchen', 'parking'], 
     hourlyRate: 100, 
-    images: ['https://placehold.co/800x600.png', 'https://placehold.co/400x300.png', 'https://placehold.co/400x300.png', 'https://placehold.co/400x300.png'], 
+    images: ['https://placehold.co/800x600.png', 'https://placehold.co/800x601.png', 'https://placehold.co/800x602.png', 'https://placehold.co/800x603.png'], 
     ownerId: 'owner123', 
     rating: 4.8, 
     category: 'Creative Studio'
 };
 
+const imageHints = ["interior", "details", "window view", "entrance"];
 
 const AmenityIcon = ({ amenity }: { amenity: string }) => {
     switch (amenity) {
@@ -43,11 +45,24 @@ export default function SpaceDetailPage({ params }: { params: { id: string } }) 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
         <div className="lg:col-span-2">
           {/* Image Gallery */}
-          <div className="grid grid-cols-2 grid-rows-2 gap-4 h-[500px] mb-8">
-            <div className="col-span-2 row-span-2">
-              <Image src={space.images[0]} data-ai-hint="creative loft" alt={space.name} width={800} height={600} className="w-full h-full object-cover rounded-lg" />
-            </div>
-          </div>
+            <Carousel className="w-full rounded-lg overflow-hidden mb-8">
+                <CarouselContent>
+                    {space.images.map((img, index) => (
+                        <CarouselItem key={index}>
+                            <Image 
+                                src={img} 
+                                data-ai-hint={`creative loft ${imageHints[index] || ''}`.trim()} 
+                                alt={`${space.name} image ${index + 1}`} 
+                                width={800} 
+                                height={600} 
+                                className="w-full h-auto object-cover aspect-[4/3]" 
+                            />
+                        </CarouselItem>
+                    ))}
+                </CarouselContent>
+                <CarouselPrevious className="hidden sm:flex" />
+                <CarouselNext className="hidden sm:flex" />
+            </Carousel>
           
           <h1 className="font-headline text-4xl font-bold mb-2">{space.name}</h1>
           <div className="flex items-center gap-4 text-muted-foreground mb-6">
@@ -96,7 +111,7 @@ export default function SpaceDetailPage({ params }: { params: { id: string } }) 
                     <CardTitle className="flex items-center justify-between font-headline">
                         <span>Book this Space</span>
                         <div className="flex items-baseline">
-                            <span className="text-2xl font-bold">${space.hourlyRate}</span>
+                            <span className="text-2xl font-bold">£{space.hourlyRate}</span>
                             <span className="text-sm text-muted-foreground">/hour</span>
                         </div>
                     </CardTitle>
