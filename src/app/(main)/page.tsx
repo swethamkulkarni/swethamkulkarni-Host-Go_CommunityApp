@@ -11,17 +11,17 @@ import { MapPin, Users, Calendar as CalendarIcon, Tag, Wifi, ParkingSquare, Proj
 import type { Space, Event } from "@/lib/types";
 
 const mockSpaces: Space[] = [
-  { id: '1', name: 'The Creative Loft', description: '', address: '', postcode: 'E2 8AA', borough: 'Hackney', capacity: 50, amenities: ['wifi', 'projector'], hourlyRate: 100, images: ['/placeholder.png'], ownerId: '', rating: 4.8, category: 'Creative Studio' },
-  { id: '2', name: 'Rooftop Garden Oasis', description: '', address: '', postcode: 'SE1 9SG', borough: 'Southwark', capacity: 80, amenities: ['wifi', 'kitchen'], hourlyRate: 150, images: ['/placeholder.png'], ownerId: '', rating: 4.9, category: 'Outdoor Space' },
-  { id: '3', name: 'Modern Tech Hub', description: '', address: '', postcode: 'EC1Y 8QP', borough: 'Islington', capacity: 120, amenities: ['wifi', 'projector', 'parking'], hourlyRate: 200, images: ['/placeholder.png'], ownerId: '', rating: 4.7, category: 'Meeting Room' },
-  { id: '4', name: 'Community Hall', description: '', address: '', postcode: 'W11 2ES', borough: 'Kensington', capacity: 100, amenities: ['kitchen', 'parking'], hourlyRate: 75, images: ['/placeholder.png'], ownerId: '', rating: 4.5, category: 'Community Space' },
+  { id: '1', name: 'The Creative Loft', description: '', address: '', postcode: 'E2 8AA', borough: 'Hackney', capacity: 50, amenities: ['wifi', 'projector'], hourlyRate: 100, images: ['https://placehold.co/600x400.png'], ownerId: '', rating: 4.8, category: 'Creative Studio' },
+  { id: '2', name: 'Rooftop Garden Oasis', description: '', address: '', postcode: 'SE1 9SG', borough: 'Southwark', capacity: 80, amenities: ['wifi', 'kitchen'], hourlyRate: 150, images: ['https://placehold.co/600x400.png'], ownerId: '', rating: 4.9, category: 'Outdoor Space' },
+  { id: '3', name: 'Modern Tech Hub', description: '', address: '', postcode: 'EC1Y 8QP', borough: 'Islington', capacity: 120, amenities: ['wifi', 'projector', 'parking'], hourlyRate: 200, images: ['https://placehold.co/600x400.png'], ownerId: '', rating: 4.7, category: 'Meeting Room' },
+  { id: '4', name: 'Community Hall', description: '', address: '', postcode: 'W11 2ES', borough: 'Kensington', capacity: 100, amenities: ['kitchen', 'parking'], hourlyRate: 75, images: ['https://placehold.co/600x400.png'], ownerId: '', rating: 4.5, category: 'Community Space' },
 ];
 
 const mockEvents: Event[] = [
-  { id: '1', title: 'Beginner\'s Yoga Workshop', description: '', category: 'Fitness', organizerId: '', spaceId: '1', datetime: new Date('2024-08-15T10:00:00'), duration: 2, price: 0, tags: ['yoga', 'wellness', 'fitness'], image: '/placeholder.png', space: mockSpaces[0] },
-  { id: '2', title: 'Indie Film Screening', description: '', category: 'Cultural', organizerId: '', spaceId: '2', datetime: new Date('2024-08-20T19:00:00'), duration: 3, price: 0, tags: ['film', 'cinema', 'arts'], image: '/placeholder.png', space: mockSpaces[1] },
-  { id: '3', title: 'Startup Pitch Night', description: '', category: 'Tech', organizerId: '', spaceId: '3', datetime: new Date('2024-08-22T18:30:00'), duration: 4, price: 0, tags: ['tech', 'networking', 'business'], image: '/placeholder.png', space: mockSpaces[2] },
-  { id: '4', title: 'Local Pottery Market', description: '', category: 'Social', organizerId: '', spaceId: '4', datetime: new Date('2024-09-01T11:00:00'), duration: 6, price: 0, tags: ['market', 'crafts', 'community'], image: '/placeholder.png', space: mockSpaces[3] },
+  { id: '1', title: 'Beginner\'s Yoga Workshop', description: '', category: 'Fitness', organizerId: '', spaceId: '1', datetime: new Date('2024-08-15T10:00:00'), duration: 2, price: 0, tags: ['yoga', 'wellness', 'fitness'], image: 'https://placehold.co/600x400.png', space: mockSpaces[0] },
+  { id: '2', title: 'Indie Film Screening', description: '', category: 'Cultural', organizerId: '', spaceId: '2', datetime: new Date('2024-08-20T19:00:00'), duration: 3, price: 0, tags: ['film', 'cinema', 'arts'], image: 'https://placehold.co/600x400.png', space: mockSpaces[1] },
+  { id: '3', title: 'Startup Pitch Night', description: '', category: 'Tech', organizerId: '', spaceId: '3', datetime: new Date('2024-08-22T18:30:00'), duration: 4, price: 0, tags: ['tech', 'networking', 'business'], image: 'https://placehold.co/600x400.png', space: mockSpaces[2] },
+  { id: '4', title: 'Local Pottery Market', description: '', category: 'Social', organizerId: '', spaceId: '4', datetime: new Date('2024-09-01T11:00:00'), duration: 6, price: 0, tags: ['market', 'crafts', 'community'], image: 'https://placehold.co/600x400.png', space: mockSpaces[3] },
 ];
 
 const AmenityIcon = ({ amenity }: { amenity: string }) => {
@@ -78,7 +78,18 @@ export default function HomePage() {
             {mockSpaces.map(space => (
               <Card key={space.id} className="flex flex-col">
                 <CardHeader className="p-0">
-                  <Image src="https://placehold.co/600x400.png" alt={space.name} width={600} height={400} className="rounded-t-lg" data-ai-hint="venue interior" />
+                  <Image 
+                    src={space.images[0]} 
+                    alt={space.name} 
+                    width={600} 
+                    height={400} 
+                    className="rounded-t-lg" 
+                    data-ai-hint={
+                      space.id === '1' ? "creative loft" :
+                      space.id === '2' ? "rooftop garden" :
+                      space.id === '3' ? "tech hub" :
+                      "community hall"
+                    } />
                 </CardHeader>
                 <CardContent className="flex-grow pt-6">
                   <Badge variant="secondary" className="mb-2">{space.category}</Badge>
@@ -113,7 +124,18 @@ export default function HomePage() {
             {mockEvents.map(event => (
               <Card key={event.id} className="flex flex-col">
                 <CardHeader className="p-0">
-                  <Image src="https://placehold.co/600x400.png" alt={event.title} width={600} height={400} className="rounded-t-lg" data-ai-hint="community event" />
+                  <Image 
+                    src={event.image} 
+                    alt={event.title} 
+                    width={600} 
+                    height={400} 
+                    className="rounded-t-lg" 
+                    data-ai-hint={
+                      event.id === '1' ? "yoga class" :
+                      event.id === '2' ? "film screening" :
+                      event.id === '3' ? "startup pitch" :
+                      "pottery market"
+                    } />
                 </CardHeader>
                 <CardContent className="flex-grow pt-6">
                   <Badge className="mb-2 bg-accent text-accent-foreground">{event.category}</Badge>

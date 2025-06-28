@@ -17,7 +17,7 @@ const mockSpace: Space = {
     capacity: 50, 
     amenities: ['wifi', 'projector', 'kitchen', 'parking'], 
     hourlyRate: 100, 
-    images: ['/placeholder.png', '/placeholder.png', '/placeholder.png', '/placeholder.png'], 
+    images: ['https://placehold.co/800x600.png', 'https://placehold.co/400x300.png', 'https://placehold.co/400x300.png', 'https://placehold.co/400x300.png'], 
     ownerId: 'owner123', 
     rating: 4.8, 
     category: 'Creative Studio'
@@ -45,7 +45,7 @@ export default function SpaceDetailPage({ params }: { params: { id: string } }) 
           {/* Image Gallery */}
           <div className="grid grid-cols-2 grid-rows-2 gap-4 h-[500px] mb-8">
             <div className="col-span-2 row-span-2">
-              <Image src="https://placehold.co/800x600.png" data-ai-hint="venue interior" alt={space.name} width={800} height={600} className="w-full h-full object-cover rounded-lg" />
+              <Image src={space.images[0]} data-ai-hint="creative loft" alt={space.name} width={800} height={600} className="w-full h-full object-cover rounded-lg" />
             </div>
           </div>
           

@@ -7,7 +7,7 @@ import { Calendar as CalendarIcon, Clock, MapPin, Tag, Ticket } from "lucide-rea
 import type { Event, Space } from "@/lib/types";
 
 const mockSpace: Space = {
-    id: '1', name: 'The Creative Loft', description: '', address: '123 Fake St, London', postcode: 'E2 8AA', borough: 'Hackney', capacity: 50, amenities: ['wifi', 'projector'], hourlyRate: 100, images: ['/placeholder.png'], ownerId: '', rating: 4.8, category: 'Creative Studio'
+    id: '1', name: 'The Creative Loft', description: '', address: '123 Fake St, London', postcode: 'E2 8AA', borough: 'Hackney', capacity: 50, amenities: ['wifi', 'projector'], hourlyRate: 100, images: ['https://placehold.co/600x400.png'], ownerId: '', rating: 4.8, category: 'Creative Studio'
 };
 
 const mockEvent: Event = {
@@ -21,7 +21,7 @@ const mockEvent: Event = {
     duration: 2, 
     price: 0, 
     tags: ['yoga', 'wellness', 'fitness', 'beginner'], 
-    image: '/placeholder.png', 
+    image: 'https://placehold.co/800x500.png', 
     space: mockSpace 
 };
 
@@ -36,7 +36,7 @@ export default function EventDetailPage({ params }: { params: { id: string } }) 
           <div className="lg:col-span-2">
             <Card>
                 <CardHeader className="p-0">
-                    <Image src="https://placehold.co/800x500.png" data-ai-hint="workshop yoga" alt={event.title} width={800} height={500} className="w-full h-auto object-cover rounded-t-lg" />
+                    <Image src={event.image} data-ai-hint="workshop yoga" alt={event.title} width={800} height={500} className="w-full h-auto object-cover rounded-t-lg" />
                 </CardHeader>
                 <CardContent className="p-6">
                     <Badge className="mb-4 bg-accent text-accent-foreground">{event.category}</Badge>

@@ -57,7 +57,15 @@ export default function DashboardPage() {
                                         <TableRow key={booking.id}>
                                             <TableCell className="font-medium">
                                                 <div className="flex items-center gap-4">
-                                                    <Image src={booking.image} data-ai-hint="event booking" alt={booking.eventTitle} width={40} height={40} className="rounded-md" />
+                                                    <Image 
+                                                        src={booking.image} 
+                                                        data-ai-hint={
+                                                            booking.id === 'b1' ? "yoga class" : "film screening"
+                                                        } 
+                                                        alt={booking.eventTitle} 
+                                                        width={40} 
+                                                        height={40} 
+                                                        className="rounded-md" />
                                                     <div>
                                                         <p>{booking.eventTitle}</p>
                                                         <p className="text-sm text-muted-foreground">{booking.spaceName}</p>
