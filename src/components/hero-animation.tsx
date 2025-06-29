@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Icosahedron, Torus, Sphere } from '@react-three/drei';
 import * as THREE from 'three';
@@ -37,6 +37,16 @@ function FloatingShape({ position, color, shape, scale = 1 }: { position: [numbe
 }
 
 export default function HeroAnimation() {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return null;
+  }
+  
   return (
     <div className="absolute inset-0 z-0 opacity-50">
       <Canvas camera={{ position: [0, 0, 8], fov: 45 }}>
