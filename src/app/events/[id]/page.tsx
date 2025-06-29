@@ -5,9 +5,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { Calendar as CalendarIcon, Clock, MapPin, Tag, Ticket, Accessibility } from "lucide-react";
 import type { Event, Space } from "@/lib/types";
+import MapComponent from "@/components/map";
 
 const mockSpace: Space = {
-    id: '1', name: 'The Creative Loft', description: '', address: '123 Fake St, London', postcode: 'E2 8AA', borough: 'Hackney', capacity: 50, amenities: ['wifi', 'projector'], hourlyRate: 100, images: ['https://placehold.co/600x400.png'], ownerId: '', rating: 4.8, category: 'Creative Studio', isAccessible: true
+    id: '1', name: 'The Creative Loft', description: '', address: '123 Fake St, London', postcode: 'E2 8AA', borough: 'Hackney', capacity: 50, amenities: ['wifi', 'projector'], hourlyRate: 100, images: ['https://placehold.co/600x400.png'], ownerId: '', rating: 4.8, category: 'Creative Studio', isAccessible: true, lat: 51.5293, lng: -0.0519
 };
 
 const mockEvent: Event = {
@@ -98,6 +99,9 @@ export default function EventDetailPage({ params }: { params: { id: string } }) 
                         <div>
                             <p className="font-semibold">Free to Attend</p>
                         </div>
+                    </div>
+                    <div className="pt-2">
+                        <MapComponent center={{ lat: event.space.lat, lng: event.space.lng }} zoom={14} className="w-full h-[200px] rounded-lg" />
                     </div>
                     <Button className="w-full mt-6">Register for this Event</Button>
                 </CardContent>

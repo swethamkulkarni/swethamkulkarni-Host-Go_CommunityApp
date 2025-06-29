@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Star, MapPin, Users, Wifi, Projector, ParkingSquare, Accessibility } from "lucide-react";
 import type { Space } from "@/lib/types";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import MapComponent from "@/components/map";
 
 // Mock data, in a real app this would come from a database
 const mockSpace: Space = {
@@ -22,7 +23,9 @@ const mockSpace: Space = {
     ownerId: 'owner123', 
     rating: 4.8, 
     category: 'Creative Studio',
-    isAccessible: true
+    isAccessible: true,
+    lat: 51.5293,
+    lng: -0.0519
 };
 
 const imageHints = ["interior", "details", "window view", "entrance"];
@@ -112,6 +115,15 @@ export default function SpaceDetailPage({ params }: { params: { id: string } }) 
               ))}
             </div>
           </div>
+          
+          <hr className="my-8" />
+
+          <div>
+            <h2 className="font-headline text-2xl font-semibold mb-4">Location</h2>
+            <MapComponent center={{ lat: space.lat, lng: space.lng }} className="w-full h-[400px] rounded-lg" />
+            <p className="text-muted-foreground mt-2">{space.address}</p>
+          </div>
+
 
         </div>
 

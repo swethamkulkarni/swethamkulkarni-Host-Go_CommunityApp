@@ -13,6 +13,8 @@ export interface Space {
   rating: number;
   category: string;
   isAccessible?: boolean;
+  lat: number;
+  lng: number;
 }
 
 export interface Event {

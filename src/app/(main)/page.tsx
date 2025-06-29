@@ -9,12 +9,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { MapPin, Users, Calendar as CalendarIcon, Tag, Wifi, ParkingSquare, Projector, Accessibility } from "lucide-react";
 import type { Space, Event } from "@/lib/types";
+import MapComponent from "@/components/map";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const mockSpaces: Space[] = [
-  { id: '1', name: 'The Creative Loft', description: '', address: '', postcode: 'E2 8AA', borough: 'Hackney', capacity: 50, amenities: ['wifi', 'projector'], hourlyRate: 100, images: ['https://placehold.co/600x400.png'], ownerId: '', rating: 4.8, category: 'Creative Studio', isAccessible: false },
-  { id: '2', name: 'Rooftop Garden Oasis', description: '', address: '', postcode: 'SE1 9SG', borough: 'Southwark', capacity: 80, amenities: ['wifi', 'kitchen'], hourlyRate: 150, images: ['https://placehold.co/600x401.png'], ownerId: '', rating: 4.9, category: 'Outdoor Space', isAccessible: true },
-  { id: '3', name: 'Modern Tech Hub', description: '', address: '', postcode: 'EC1Y 8QP', borough: 'Islington', capacity: 120, amenities: ['wifi', 'projector', 'parking'], hourlyRate: 200, images: ['https://placehold.co/600x402.png'], ownerId: '', rating: 4.7, category: 'Meeting Room', isAccessible: false },
-  { id: '4', name: 'Community Hall', description: '', address: '', postcode: 'W11 2ES', borough: 'Kensington', capacity: 100, amenities: ['kitchen', 'parking'], hourlyRate: 75, images: ['https://placehold.co/600x403.png'], ownerId: '', rating: 4.5, category: 'Community Space', isAccessible: true },
+  { id: '1', name: 'The Creative Loft', description: '', address: '123 Fake St, London', postcode: 'E2 8AA', borough: 'Hackney', capacity: 50, amenities: ['wifi', 'projector'], hourlyRate: 100, images: ['https://placehold.co/600x400.png'], ownerId: '', rating: 4.8, category: 'Creative Studio', isAccessible: false, lat: 51.5293, lng: -0.0519 },
+  { id: '2', name: 'Rooftop Garden Oasis', description: '', address: '456 Another St, London', postcode: 'SE1 9SG', borough: 'Southwark', capacity: 80, amenities: ['wifi', 'kitchen'], hourlyRate: 150, images: ['https://placehold.co/600x401.png'], ownerId: '', rating: 4.9, category: 'Outdoor Space', isAccessible: true, lat: 51.5045, lng: -0.0865 },
+  { id: '3', name: 'Modern Tech Hub', description: '', address: '789 High St, London', postcode: 'EC1Y 8QP', borough: 'Islington', capacity: 120, amenities: ['wifi', 'projector', 'parking'], hourlyRate: 200, images: ['https://placehold.co/600x402.png'], ownerId: '', rating: 4.7, category: 'Meeting Room', isAccessible: false, lat: 51.5256, lng: -0.0905 },
+  { id: '4', name: 'Community Hall', description: '', address: '101 Main Rd, London', postcode: 'W11 2ES', borough: 'Kensington', capacity: 100, amenities: ['kitchen', 'parking'], hourlyRate: 75, images: ['https://placehold.co/600x403.png'], ownerId: '', rating: 4.5, category: 'Community Space', isAccessible: true, lat: 51.5126, lng: -0.2039 },
 ];
 
 const mockEvents: Event[] = [
@@ -74,53 +76,65 @@ export default function HomePage() {
       <section className="py-16">
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold font-headline mb-8">Featured Spaces</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {mockSpaces.map(space => (
-              <Card key={space.id} className="flex flex-col">
-                <CardHeader className="p-0">
-                  <Image 
-                    src={space.images[0]} 
-                    alt={space.name} 
-                    width={600} 
-                    height={400} 
-                    className="rounded-t-lg" 
-                    data-ai-hint={
-                      space.id === '1' ? "creative loft" :
-                      space.id === '2' ? "rooftop garden" :
-                      space.id === '3' ? "tech hub" :
-                      "community hall"
-                    } />
-                </CardHeader>
-                <CardContent className="flex-grow pt-6">
-                  <Badge variant="secondary" className="mb-2">{space.category}</Badge>
-                  <h3 className="font-semibold font-headline text-lg">{space.name}</h3>
-                  <div className="text-sm text-muted-foreground flex items-center gap-2 mt-2">
-                    <MapPin className="w-4 h-4" />
-                    <span>{space.borough}, {space.postcode}</span>
-                  </div>
-                  <div className="flex items-center gap-4 mt-2 text-sm text-muted-foreground">
-                    <div className="flex items-center gap-2">
-                        <Users className="w-4 h-4" />
-                        <span>Up to {space.capacity} people</span>
-                    </div>
-                    {space.isAccessible && (
-                      <div className="flex items-center gap-2" title="Wheelchair Accessible">
-                        <Accessibility className="w-4 h-4" />
-                        <span className="sr-only">Wheelchair Accessible</span>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+            <div className="lg:sticky lg:top-24">
+               <MapComponent 
+                center={{ lat: 51.515, lng: -0.09 }}
+                zoom={11}
+                markers={mockSpaces.map(s => ({ lat: s.lat, lng: s.lng, key: s.id }))}
+                className="w-full h-[400px] lg:h-[600px]"
+              />
+            </div>
+            <ScrollArea className="h-auto lg:h-[600px]">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-8 pr-4">
+                {mockSpaces.map(space => (
+                  <Card key={space.id} className="flex flex-col">
+                    <CardHeader className="p-0">
+                      <Image 
+                        src={space.images[0]} 
+                        alt={space.name} 
+                        width={600} 
+                        height={400} 
+                        className="rounded-t-lg object-cover aspect-[3/2]" 
+                        data-ai-hint={
+                          space.id === '1' ? "creative loft" :
+                          space.id === '2' ? "rooftop garden" :
+                          space.id === '3' ? "tech hub" :
+                          "community hall"
+                        } />
+                    </CardHeader>
+                    <CardContent className="flex-grow pt-6">
+                      <Badge variant="secondary" className="mb-2">{space.category}</Badge>
+                      <h3 className="font-semibold font-headline text-lg">{space.name}</h3>
+                      <div className="text-sm text-muted-foreground flex items-center gap-2 mt-2">
+                        <MapPin className="w-4 h-4" />
+                        <span>{space.borough}, {space.postcode}</span>
                       </div>
-                    )}
-                  </div>
-                   <div className="flex items-center gap-4 mt-4">
-                    {space.amenities.map(amenity => <AmenityIcon key={amenity} amenity={amenity} />)}
-                  </div>
-                </CardContent>
-                <CardFooter>
-                  <Button asChild className="w-full">
-                    <Link href={`/spaces/${space.id}`}>View Space</Link>
-                  </Button>
-                </CardFooter>
-              </Card>
-            ))}
+                      <div className="flex items-center gap-4 mt-2 text-sm text-muted-foreground">
+                        <div className="flex items-center gap-2">
+                            <Users className="w-4 h-4" />
+                            <span>Up to {space.capacity} people</span>
+                        </div>
+                        {space.isAccessible && (
+                          <div className="flex items-center gap-2" title="Wheelchair Accessible">
+                            <Accessibility className="w-4 h-4" />
+                            <span className="sr-only">Wheelchair Accessible</span>
+                          </div>
+                        )}
+                      </div>
+                       <div className="flex items-center gap-4 mt-4">
+                        {space.amenities.map(amenity => <AmenityIcon key={amenity} amenity={amenity} />)}
+                      </div>
+                    </CardContent>
+                    <CardFooter>
+                      <Button asChild className="w-full">
+                        <Link href={`/spaces/${space.id}`}>View Space</Link>
+                      </Button>
+                    </CardFooter>
+                  </Card>
+                ))}
+              </div>
+            </ScrollArea>
           </div>
         </div>
       </section>
@@ -137,7 +151,7 @@ export default function HomePage() {
                     alt={event.title} 
                     width={600} 
                     height={400} 
-                    className="rounded-t-lg" 
+                    className="rounded-t-lg object-cover aspect-[3/2]" 
                     data-ai-hint={
                       event.id === '1' ? "yoga class" :
                       event.id === '2' ? "film screening" :
