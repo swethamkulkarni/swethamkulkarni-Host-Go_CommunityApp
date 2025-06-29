@@ -7,14 +7,14 @@ import { Calendar } from "@/components/ui/calendar";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import Link from "next/link";
-import { MapPin, Users, Calendar as CalendarIcon, Tag, Wifi, ParkingSquare, Projector } from "lucide-react";
+import { MapPin, Users, Calendar as CalendarIcon, Tag, Wifi, ParkingSquare, Projector, Accessibility } from "lucide-react";
 import type { Space, Event } from "@/lib/types";
 
 const mockSpaces: Space[] = [
-  { id: '1', name: 'The Creative Loft', description: '', address: '', postcode: 'E2 8AA', borough: 'Hackney', capacity: 50, amenities: ['wifi', 'projector'], hourlyRate: 100, images: ['https://placehold.co/600x400.png'], ownerId: '', rating: 4.8, category: 'Creative Studio' },
-  { id: '2', name: 'Rooftop Garden Oasis', description: '', address: '', postcode: 'SE1 9SG', borough: 'Southwark', capacity: 80, amenities: ['wifi', 'kitchen'], hourlyRate: 150, images: ['https://placehold.co/600x401.png'], ownerId: '', rating: 4.9, category: 'Outdoor Space' },
-  { id: '3', name: 'Modern Tech Hub', description: '', address: '', postcode: 'EC1Y 8QP', borough: 'Islington', capacity: 120, amenities: ['wifi', 'projector', 'parking'], hourlyRate: 200, images: ['https://placehold.co/600x402.png'], ownerId: '', rating: 4.7, category: 'Meeting Room' },
-  { id: '4', name: 'Community Hall', description: '', address: '', postcode: 'W11 2ES', borough: 'Kensington', capacity: 100, amenities: ['kitchen', 'parking'], hourlyRate: 75, images: ['https://placehold.co/600x403.png'], ownerId: '', rating: 4.5, category: 'Community Space' },
+  { id: '1', name: 'The Creative Loft', description: '', address: '', postcode: 'E2 8AA', borough: 'Hackney', capacity: 50, amenities: ['wifi', 'projector'], hourlyRate: 100, images: ['https://placehold.co/600x400.png'], ownerId: '', rating: 4.8, category: 'Creative Studio', isAccessible: false },
+  { id: '2', name: 'Rooftop Garden Oasis', description: '', address: '', postcode: 'SE1 9SG', borough: 'Southwark', capacity: 80, amenities: ['wifi', 'kitchen'], hourlyRate: 150, images: ['https://placehold.co/600x401.png'], ownerId: '', rating: 4.9, category: 'Outdoor Space', isAccessible: true },
+  { id: '3', name: 'Modern Tech Hub', description: '', address: '', postcode: 'EC1Y 8QP', borough: 'Islington', capacity: 120, amenities: ['wifi', 'projector', 'parking'], hourlyRate: 200, images: ['https://placehold.co/600x402.png'], ownerId: '', rating: 4.7, category: 'Meeting Room', isAccessible: false },
+  { id: '4', name: 'Community Hall', description: '', address: '', postcode: 'W11 2ES', borough: 'Kensington', capacity: 100, amenities: ['kitchen', 'parking'], hourlyRate: 75, images: ['https://placehold.co/600x403.png'], ownerId: '', rating: 4.5, category: 'Community Space', isAccessible: true },
 ];
 
 const mockEvents: Event[] = [
@@ -98,9 +98,17 @@ export default function HomePage() {
                     <MapPin className="w-4 h-4" />
                     <span>{space.borough}, {space.postcode}</span>
                   </div>
-                  <div className="flex items-center gap-2 mt-2">
-                    <Users className="w-4 h-4 text-muted-foreground" />
-                    <span className="text-sm text-muted-foreground">Up to {space.capacity} people</span>
+                  <div className="flex items-center gap-4 mt-2 text-sm text-muted-foreground">
+                    <div className="flex items-center gap-2">
+                        <Users className="w-4 h-4" />
+                        <span>Up to {space.capacity} people</span>
+                    </div>
+                    {space.isAccessible && (
+                      <div className="flex items-center gap-2" title="Wheelchair Accessible">
+                        <Accessibility className="w-4 h-4" />
+                        <span className="sr-only">Wheelchair Accessible</span>
+                      </div>
+                    )}
                   </div>
                    <div className="flex items-center gap-4 mt-4">
                     {space.amenities.map(amenity => <AmenityIcon key={amenity} amenity={amenity} />)}
@@ -147,6 +155,9 @@ export default function HomePage() {
                   <div className="text-sm text-muted-foreground flex items-center gap-2 mt-2">
                     <MapPin className="w-4 h-4" />
                     <span>{event.space.name}</span>
+                    {event.space.isAccessible && (
+                        <Accessibility className="w-4 h-4" title="Wheelchair Accessible"/>
+                    )}
                   </div>
                   <div className="flex flex-wrap gap-2 mt-4">
                     {event.tags.map(tag => (

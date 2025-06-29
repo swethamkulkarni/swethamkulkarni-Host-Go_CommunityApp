@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Calendar } from "@/components/ui/calendar";
 import Image from "next/image";
-import { Star, MapPin, Users, Wifi, Projector, ParkingSquare } from "lucide-react";
+import { Star, MapPin, Users, Wifi, Projector, ParkingSquare, Accessibility } from "lucide-react";
 import type { Space } from "@/lib/types";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
@@ -21,7 +21,8 @@ const mockSpace: Space = {
     images: ['https://placehold.co/800x600.png', 'https://placehold.co/800x601.png', 'https://placehold.co/800x602.png', 'https://placehold.co/800x603.png'], 
     ownerId: 'owner123', 
     rating: 4.8, 
-    category: 'Creative Studio'
+    category: 'Creative Studio',
+    isAccessible: true
 };
 
 const imageHints = ["interior", "details", "window view", "entrance"];
@@ -65,7 +66,7 @@ export default function SpaceDetailPage({ params }: { params: { id: string } }) 
             </Carousel>
           
           <h1 className="font-headline text-4xl font-bold mb-2">{space.name}</h1>
-          <div className="flex items-center gap-4 text-muted-foreground mb-6">
+          <div className="flex items-center gap-4 text-muted-foreground mb-6 flex-wrap">
             <div className="flex items-center gap-1">
               <Star className="w-5 h-5 text-accent" />
               <span>{space.rating}</span>
@@ -80,6 +81,15 @@ export default function SpaceDetailPage({ params }: { params: { id: string } }) 
               <Users className="w-5 h-5" />
               <span>Up to {space.capacity} guests</span>
             </div>
+            {space.isAccessible && (
+                <>
+                    <span>·</span>
+                    <div className="flex items-center gap-1" title="Wheelchair Accessible">
+                        <Accessibility className="w-5 h-5 text-primary" />
+                        <span className="text-primary font-medium">Accessible</span>
+                    </div>
+                </>
+            )}
           </div>
 
           <Badge variant="secondary" className="mb-6">{space.category}</Badge>

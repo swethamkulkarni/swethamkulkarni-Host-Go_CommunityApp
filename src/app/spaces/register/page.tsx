@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Accessibility } from "lucide-react";
 
 const amenities = [
     { id: 'wifi', label: 'WiFi' },
@@ -78,7 +79,7 @@ export default function RegisterSpacePage() {
                                     <Input id="capacity" type="number" placeholder="50" />
                                 </div>
                                 <div className="space-y-2">
-                                    <Label htmlFor="hourly-rate">Hourly Rate ($)</Label>
+                                    <Label htmlFor="hourly-rate">Hourly Rate (£)</Label>
                                     <Input id="hourly-rate" type="number" placeholder="100" />
                                 </div>
                             </div>
@@ -86,7 +87,7 @@ export default function RegisterSpacePage() {
 
                         {/* Section 3: Amenities */}
                         <div className="space-y-4">
-                            <h3 className="font-headline text-xl font-semibold border-b pb-2">Amenities</h3>
+                            <h3 className="font-headline text-xl font-semibold border-b pb-2">Amenities & Accessibility</h3>
                             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                                 {amenities.map(amenity => (
                                     <div key={amenity.id} className="flex items-center space-x-2">
@@ -94,6 +95,15 @@ export default function RegisterSpacePage() {
                                         <Label htmlFor={`amenity-${amenity.id}`} className="font-normal">{amenity.label}</Label>
                                     </div>
                                 ))}
+                            </div>
+                            <div className="pt-4">
+                                <div className="flex items-center space-x-2">
+                                    <Checkbox id="amenity-accessible" />
+                                    <Label htmlFor="amenity-accessible" className="font-normal flex items-center gap-2">
+                                        <Accessibility className="w-4 h-4" />
+                                        Wheelchair Accessible
+                                    </Label>
+                                </div>
                             </div>
                         </div>
                         

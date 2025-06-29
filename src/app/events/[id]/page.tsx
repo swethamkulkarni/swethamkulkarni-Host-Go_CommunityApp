@@ -3,11 +3,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
-import { Calendar as CalendarIcon, Clock, MapPin, Tag, Ticket } from "lucide-react";
+import { Calendar as CalendarIcon, Clock, MapPin, Tag, Ticket, Accessibility } from "lucide-react";
 import type { Event, Space } from "@/lib/types";
 
 const mockSpace: Space = {
-    id: '1', name: 'The Creative Loft', description: '', address: '123 Fake St, London', postcode: 'E2 8AA', borough: 'Hackney', capacity: 50, amenities: ['wifi', 'projector'], hourlyRate: 100, images: ['https://placehold.co/600x400.png'], ownerId: '', rating: 4.8, category: 'Creative Studio'
+    id: '1', name: 'The Creative Loft', description: '', address: '123 Fake St, London', postcode: 'E2 8AA', borough: 'Hackney', capacity: 50, amenities: ['wifi', 'projector'], hourlyRate: 100, images: ['https://placehold.co/600x400.png'], ownerId: '', rating: 4.8, category: 'Creative Studio', isAccessible: true
 };
 
 const mockEvent: Event = {
@@ -82,7 +82,15 @@ export default function EventDetailPage({ params }: { params: { id: string } }) 
                         <div>
                             <p className="font-semibold">{event.space.name}</p>
                             <p className="text-sm text-muted-foreground">{event.space.address}</p>
-                            <Link href={`/spaces/${event.space.id}`} className="text-sm text-primary hover:underline">View space details</Link>
+                            <div className="flex items-center gap-4 mt-1">
+                                <Link href={`/spaces/${event.space.id}`} className="text-sm text-primary hover:underline">View space details</Link>
+                                {event.space.isAccessible && (
+                                    <div className="flex items-center gap-1 text-muted-foreground" title="Wheelchair Accessible">
+                                        <Accessibility className="w-4 h-4" />
+                                        <span className="text-xs">Accessible</span>
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </div>
                      <div className="flex items-start gap-4">

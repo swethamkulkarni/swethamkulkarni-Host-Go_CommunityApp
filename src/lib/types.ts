@@ -12,6 +12,7 @@ export interface Space {
   ownerId: string;
   rating: number;
   category: string;
+  isAccessible?: boolean;
 }
 
 export interface Event {
