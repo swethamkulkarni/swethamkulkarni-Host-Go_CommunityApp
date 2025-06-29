@@ -83,7 +83,7 @@ export default function CreateEventPage() {
                                 <PartyPopper className="h-4 w-4" />
                                 <AlertTitle>Community First!</AlertTitle>
                                 <AlertDescription>
-                                    All events on Third Space Finder are free to ensure they are accessible to everyone in the community.
+                                    All events on Host & Go are free to ensure they are accessible to everyone in the community.
                                 </AlertDescription>
                             </Alert>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

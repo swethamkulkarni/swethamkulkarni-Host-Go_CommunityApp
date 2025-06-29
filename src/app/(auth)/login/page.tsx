@@ -20,7 +20,7 @@ export default function LoginPage() {
       <CardHeader className="text-center">
         <div className="flex justify-center items-center gap-2 mb-4">
             <Layers className="h-7 w-7 text-primary" />
-            <CardTitle className="font-headline text-2xl">Third Space Finder</CardTitle>
+            <CardTitle className="font-headline text-2xl">Host & Go</CardTitle>
         </div>
         <CardDescription>Enter your email below to login to your account</CardDescription>
       </CardHeader>

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Building, Layers } from "lucide-react";
+import { Layers } from "lucide-react";
 
 export default function Header() {
   return (
@@ -13,7 +13,7 @@ export default function Header() {
             <Link href="/" className="flex items-center gap-2">
               <Layers className="h-7 w-7 text-primary" />
               <span className="text-xl font-bold font-headline text-foreground">
-                Third Space Finder
+                Host & Go
               </span>
             </Link>
           </div>

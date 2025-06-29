@@ -10,7 +10,7 @@ export default function Footer() {
             <Link href="/" className="flex items-center gap-2">
               <Layers className="h-7 w-7 text-primary" />
               <span className="text-xl font-bold font-headline">
-                Third Space Finder
+                Host & Go
               </span>
             </Link>
             <p className="text-sm text-muted-foreground">
@@ -45,7 +45,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-8 border-t pt-8 text-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} Third Space Finder. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Host & Go. All rights reserved.</p>
         </div>
       </div>
     </footer>

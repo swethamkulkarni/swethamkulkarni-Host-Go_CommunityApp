@@ -1,4 +1,4 @@
-# **App Name**: Third Space Finder
+# **App Name**: Host & Go
 
 ## Core Features:
 
