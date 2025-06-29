@@ -6,7 +6,6 @@ import Link from "next/link";
 import { MapPin, Users, Calendar as CalendarIcon, Tag, Wifi, ParkingSquare, Projector, Accessibility } from "lucide-react";
 import type { Space, Event } from "@/lib/types";
 import MapComponent from "@/components/map";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import HomeHero from "@/components/home-hero";
 import { Button } from "@/components/ui/button";
 
@@ -42,66 +41,62 @@ export default function HomePage() {
 
       <section id="featured-spaces" className="py-16 bg-secondary">
         <div className="container mx-auto">
-          <h2 className="text-3xl font-bold font-headline mb-8">Featured Spaces</h2>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-            <div className="lg:sticky lg:top-24">
-               <MapComponent 
-                center={{ lat: 51.515, lng: -0.09 }}
-                zoom={11}
-                markers={mockSpaces.map(s => ({ lat: s.lat, lng: s.lng, key: s.id }))}
-                className="w-full h-[400px] lg:h-[600px] rounded-lg"
-              />
-            </div>
-            <ScrollArea className="h-auto lg:h-[600px]">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-8 pr-4">
-                {mockSpaces.map(space => (
-                  <Card key={space.id} className="flex flex-col">
-                    <CardHeader className="p-0">
-                      <Image 
-                        src={space.images[0]} 
-                        alt={space.name} 
-                        width={600} 
-                        height={400} 
-                        className="rounded-t-lg object-cover aspect-[3/2]" 
-                        data-ai-hint={
-                          space.id === '1' ? "creative loft" :
-                          space.id === '2' ? "rooftop garden" :
-                          space.id === '3' ? "coworking space" :
-                          "community hall"
-                        } />
-                    </CardHeader>
-                    <CardContent className="flex-grow pt-6">
-                      <Badge variant="secondary" className="mb-2">{space.category}</Badge>
-                      <h3 className="font-semibold font-headline text-lg">{space.name}</h3>
-                      <div className="text-sm text-muted-foreground flex items-center gap-2 mt-2">
-                        <MapPin className="w-4 h-4" />
-                        <span>{space.borough}, {space.postcode}</span>
+          <h2 className="text-3xl font-bold font-headline mb-8 text-center">Featured Spaces</h2>
+          <div className="mb-12">
+            <MapComponent 
+              center={{ lat: 51.515, lng: -0.09 }}
+              zoom={11}
+              markers={mockSpaces.map(s => ({ lat: s.lat, lng: s.lng, key: s.id }))}
+              className="w-full h-[400px] lg:h-[500px] rounded-lg"
+            />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {mockSpaces.map(space => (
+              <Card key={space.id} className="flex flex-col">
+                <CardHeader className="p-0">
+                  <Image 
+                    src={space.images[0]} 
+                    alt={space.name} 
+                    width={600} 
+                    height={400} 
+                    className="rounded-t-lg object-cover aspect-[3/2]" 
+                    data-ai-hint={
+                      space.id === '1' ? "creative loft" :
+                      space.id === '2' ? "rooftop garden" :
+                      space.id === '3' ? "coworking space" :
+                      "community hall"
+                    } />
+                </CardHeader>
+                <CardContent className="flex-grow pt-6">
+                  <Badge variant="secondary" className="mb-2">{space.category}</Badge>
+                  <h3 className="font-semibold font-headline text-lg">{space.name}</h3>
+                  <div className="text-sm text-muted-foreground flex items-center gap-2 mt-2">
+                    <MapPin className="w-4 h-4" />
+                    <span>{space.borough}, {space.postcode}</span>
+                  </div>
+                  <div className="flex items-center gap-4 mt-2 text-sm text-muted-foreground">
+                    <div className="flex items-center gap-2">
+                        <Users className="w-4 h-4" />
+                        <span>Up to {space.capacity} people</span>
+                    </div>
+                    {space.isAccessible && (
+                      <div className="flex items-center gap-2" title="Wheelchair Accessible">
+                        <Accessibility className="w-4 h-4" />
+                        <span className="sr-only">Wheelchair Accessible</span>
                       </div>
-                      <div className="flex items-center gap-4 mt-2 text-sm text-muted-foreground">
-                        <div className="flex items-center gap-2">
-                            <Users className="w-4 h-4" />
-                            <span>Up to {space.capacity} people</span>
-                        </div>
-                        {space.isAccessible && (
-                          <div className="flex items-center gap-2" title="Wheelchair Accessible">
-                            <Accessibility className="w-4 h-4" />
-                            <span className="sr-only">Wheelchair Accessible</span>
-                          </div>
-                        )}
-                      </div>
-                       <div className="flex items-center gap-4 mt-4">
-                        {space.amenities.map(amenity => <AmenityIcon key={amenity} amenity={amenity} />)}
-                      </div>
-                    </CardContent>
-                    <CardFooter>
-                      <Button asChild className="w-full">
-                        <Link href={`/spaces/${space.id}`}>View Space</Link>
-                      </Button>
-                    </CardFooter>
-                  </Card>
-                ))}
-              </div>
-            </ScrollArea>
+                    )}
+                  </div>
+                    <div className="flex items-center gap-4 mt-4">
+                    {space.amenities.map(amenity => <AmenityIcon key={amenity} amenity={amenity} />)}
+                  </div>
+                </CardContent>
+                <CardFooter>
+                  <Button asChild className="w-full">
+                    <Link href={`/spaces/${space.id}`}>View Space</Link>
+                  </Button>
+                </CardFooter>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
