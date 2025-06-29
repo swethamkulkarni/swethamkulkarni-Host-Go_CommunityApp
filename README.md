@@ -1,5 +1,7 @@
 # Host & Go
 
+Website:https://9000-firebase-studio-1751125755258.cluster-c3a7z3wnwzapkx3rfr5kz62dac.cloudworkstations.dev/?monospaceUid=277593&embedded=0
+
 This app is a community space which brings people together outside of work and home.
 
 Join for the Party, stay for the Community.
