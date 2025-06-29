@@ -45,10 +45,10 @@ export default function Header() {
           </nav>
           <div className="flex items-center gap-4">
             <Button variant="ghost" asChild>
-              <Link href="/login">Log in</Link>
+              <Link href="/login">Sign In</Link>
             </Button>
-            <Button asChild className="bg-primary hover:bg-primary/90">
-              <Link href="/signup">Sign up</Link>
+            <Button asChild>
+              <Link href="/signup">Join Now</Link>
             </Button>
           </div>
         </div>

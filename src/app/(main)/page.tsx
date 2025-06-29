@@ -1,9 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Calendar } from "@/components/ui/calendar";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import Link from "next/link";
@@ -40,40 +36,24 @@ const AmenityIcon = ({ amenity }: { amenity: string }) => {
 export default function HomePage() {
   return (
     <div>
-      <section className="py-20 md:py-32 bg-secondary">
-        <div className="container mx-auto text-center">
-          <h1 className="text-4xl md:text-6xl font-bold font-headline mb-4">Find Your Third Space</h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8">Discover and book unique local spaces for your events, workshops, and gatherings.</p>
-          <div className="max-w-4xl mx-auto bg-card p-4 rounded-lg shadow-lg">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
-              <Input placeholder="Search by keyword, e.g. 'art studio'" className="md:col-span-2" />
-              <Select>
-                <SelectTrigger><SelectValue placeholder="Category" /></SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="creative">Creative Studio</SelectItem>
-                  <SelectItem value="meeting">Meeting Room</SelectItem>
-                  <SelectItem value="outdoor">Outdoor Space</SelectItem>
-                  <SelectItem value="community">Community Space</SelectItem>
-                </SelectContent>
-              </Select>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Button variant="outline" className="w-full justify-start text-left font-normal">
-                    <CalendarIcon className="mr-2 h-4 w-4" />
-                    Pick a date
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-auto p-0">
-                  <Calendar mode="single" />
-                </PopoverContent>
-              </Popover>
-              <Button className="md:col-span-4 mt-2 md:mt-0 bg-accent text-accent-foreground hover:bg-accent/90">Search</Button>
-            </div>
+      <section className="py-20 md:py-32 text-center">
+        <div className="container mx-auto">
+          <h1 className="text-4xl md:text-6xl font-bold font-headline mb-4 text-foreground">Find Your Perfect Space</h1>
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
+              Discover unique venues for your next event or share your space with others.
+          </p>
+          <div className="flex justify-center gap-4">
+              <Button size="lg" asChild>
+                  <Link href="#featured-spaces">Browse Spaces</Link>
+              </Button>
+              <Button size="lg" variant="outline" asChild>
+                  <Link href="#">How It Works</Link>
+              </Button>
           </div>
         </div>
       </section>
 
-      <section className="py-16">
+      <section id="featured-spaces" className="py-16 bg-secondary">
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold font-headline mb-8">Featured Spaces</h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
@@ -82,7 +62,7 @@ export default function HomePage() {
                 center={{ lat: 51.515, lng: -0.09 }}
                 zoom={11}
                 markers={mockSpaces.map(s => ({ lat: s.lat, lng: s.lng, key: s.id }))}
-                className="w-full h-[400px] lg:h-[600px]"
+                className="w-full h-[400px] lg:h-[600px] rounded-lg"
               />
             </div>
             <ScrollArea className="h-auto lg:h-[600px]">
@@ -139,7 +119,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="py-16 bg-secondary">
+      <section className="py-16">
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold font-headline mb-8">Upcoming Events</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -160,7 +140,7 @@ export default function HomePage() {
                     } />
                 </CardHeader>
                 <CardContent className="flex-grow pt-6">
-                  <Badge className="mb-2 bg-accent text-accent-foreground">{event.category}</Badge>
+                  <Badge className="mb-2">{event.category}</Badge>
                   <h3 className="font-semibold font-headline text-lg">{event.title}</h3>
                   <div className="text-sm text-muted-foreground flex items-center gap-2 mt-2">
                     <CalendarIcon className="w-4 h-4" />
