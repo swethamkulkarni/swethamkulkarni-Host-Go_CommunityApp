@@ -4,16 +4,12 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useAppContext } from "@/context/AppContext";
-import dynamic from "next/dynamic";
-
-const HeroAnimation = dynamic(() => import("./hero-animation"), { ssr: false });
 
 export default function HomeHero() {
     const { setUserRole } = useAppContext();
 
     return (
         <div className="relative bg-background overflow-hidden">
-             <HeroAnimation />
             <section className="relative z-10 py-20 md:py-32 text-center">
                 <div className="container mx-auto">
                     <h1 className="text-4xl md:text-6xl font-bold font-headline mb-4 text-foreground">Your Community. Your Space.</h1>
