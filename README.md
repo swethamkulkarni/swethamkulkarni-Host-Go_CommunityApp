@@ -6,7 +6,7 @@ This app is a community space which brings people together outside of work and h
 
 Join for the Party, stay for the Community.
 
-#Tools used:
+# Tools used:
 
 Framework: Next.js 
 
