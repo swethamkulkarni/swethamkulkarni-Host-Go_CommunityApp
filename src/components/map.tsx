@@ -13,7 +13,7 @@ type MapProps = {
 export default function MapComponent({ center, zoom = 12, markers, className }: MapProps) {
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 
-  if (!apiKey || apiKey === 'YOUR_API_KEY_HERE') {
+  if (!apiKey) {
     return (
       <Card className={`flex items-center justify-center bg-muted/50 text-muted-foreground ${className}`}>
         <div className="text-center p-4">
