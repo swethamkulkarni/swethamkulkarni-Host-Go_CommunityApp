@@ -4,7 +4,9 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useAppContext } from "@/context/AppContext";
-import HeroAnimation from "./hero-animation";
+import dynamic from "next/dynamic";
+
+const HeroAnimation = dynamic(() => import("./hero-animation"), { ssr: false });
 
 export default function HomeHero() {
     const { setUserRole } = useAppContext();
