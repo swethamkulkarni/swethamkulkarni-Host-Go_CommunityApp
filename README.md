@@ -5,7 +5,14 @@ Website:https://9000-firebase-studio-1751125755258.cluster-c3a7z3wnwzapkx3rfr5kz
 This app is a community space which brings people together outside of work and home.
 
 Join for the Party, stay for the Community.
-
+#Tools used:
+Framework: Next.js
+Language: TypeScript
+UI Library: React
+Styling: Tailwind CSS
+Component Library: ShadCN UI
+AI Integration: Genkit
+Mapping: Google Maps Platform
 # Home Page/Discover
 
 Users can come and choose to attend or host an event through this page
