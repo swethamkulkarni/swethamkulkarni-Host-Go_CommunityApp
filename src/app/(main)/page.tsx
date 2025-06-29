@@ -66,7 +66,7 @@ export default function HomePage() {
                         data-ai-hint={
                           space.id === '1' ? "creative loft" :
                           space.id === '2' ? "rooftop garden" :
-                          space.id === '3' ? "tech hub" :
+                          space.id === '3' ? "coworking space" :
                           "community hall"
                         } />
                     </CardHeader>
