@@ -9,7 +9,7 @@ import MapComponent from "@/components/map";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 const mockSpaces: Space[] = [
-  { id: '1', name: 'The Creative Loft', description: '', address: '123 Fake St, London', postcode: 'E2 8AA', borough: 'Hackney', capacity: 50, amenities: ['wifi', 'projector'], hourlyRate: 100, images: ['https://placehold.co/600x400.png'], ownerId: '', rating: 4.8, category: 'Creative Studio', isAccessible: false, lat: 51.5293, lng: -0.0519 },
+  { id: '1', name: 'The Creative Loft', description: '', address: '123 Fake St, London', postcode: 'E2 8AA', borough: 'Hackney', capacity: 50, amenities: ['wifi', 'projector'], hourlyRate: 100, images: ['https://placehold.co/600x400.png'], ownerId: '', rating: 4.8, category: 'Creative Studio', isAccessible: true, lat: 51.5293, lng: -0.0519 },
   { id: '2', name: 'Rooftop Garden Oasis', description: '', address: '456 Another St, London', postcode: 'SE1 9SG', borough: 'Southwark', capacity: 80, amenities: ['wifi', 'kitchen'], hourlyRate: 150, images: ['https://placehold.co/600x401.png'], ownerId: '', rating: 4.9, category: 'Outdoor Space', isAccessible: true, lat: 51.5045, lng: -0.0865 },
   { id: '3', name: 'Modern Tech Hub', description: '', address: '789 High St, London', postcode: 'EC1Y 8QP', borough: 'Islington', capacity: 120, amenities: ['wifi', 'projector', 'parking'], hourlyRate: 200, images: ['https://placehold.co/600x402.png'], ownerId: '', rating: 4.7, category: 'Meeting Room', isAccessible: false, lat: 51.5256, lng: -0.0905 },
   { id: '4', name: 'Community Hall', description: '', address: '101 Main Rd, London', postcode: 'W11 2ES', borough: 'Kensington', capacity: 100, amenities: ['kitchen', 'parking'], hourlyRate: 75, images: ['https://placehold.co/600x403.png'], ownerId: '', rating: 4.5, category: 'Community Space', isAccessible: true, lat: 51.5126, lng: -0.2039 },
@@ -38,16 +38,16 @@ export default function HomePage() {
     <div>
       <section className="py-20 md:py-32 text-center">
         <div className="container mx-auto">
-          <h1 className="text-4xl md:text-6xl font-bold font-headline mb-4 text-foreground">Find Your Perfect Space</h1>
+          <h1 className="text-4xl md:text-6xl font-bold font-headline mb-4 text-foreground">Your Community. Your Space.</h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-              Discover unique venues for your next event or share your space with others.
+            Are you here to discover local happenings or to create your own?
           </p>
-          <div className="flex justify-center gap-4">
-              <Button size="lg" asChild>
-                  <Link href="#featured-spaces">Browse Spaces</Link>
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+              <Button size="lg" asChild className="w-full sm:w-auto">
+                  <Link href="#upcoming-events">Find an Event to Attend</Link>
               </Button>
-              <Button size="lg" variant="outline" asChild>
-                  <Link href="#">How It Works</Link>
+              <Button size="lg" variant="outline" asChild className="w-full sm:w-auto">
+                  <Link href="#featured-spaces">Find a Space to Host</Link>
               </Button>
           </div>
         </div>
@@ -119,7 +119,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="py-16">
+      <section id="upcoming-events" className="py-16">
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold font-headline mb-8">Upcoming Events</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
