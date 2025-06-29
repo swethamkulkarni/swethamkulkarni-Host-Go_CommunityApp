@@ -8,21 +8,21 @@ import { Layers, Menu } from "lucide-react";
 import { useAppContext } from "@/context/AppContext";
 
 const defaultNavItems = [
+  { href: "/dashboard", label: "Dashboard" },
   { href: "/", label: "Discover" },
   { href: "/spaces/register", label: "List a Space" },
   { href: "/events/create", label: "Create Event" },
-  { href: "/dashboard", label: "Dashboard" },
 ];
 
 const attendeeNavItems = [
-    { href: "/", label: "Discover" },
     { href: "/dashboard", label: "Dashboard" },
+    { href: "/", label: "Discover" },
 ];
 
 const hostNavItems = [
+    { href: "/dashboard", label: "Dashboard" },
     { href: "/spaces/register", label: "List a Space" },
     { href: "/events/create", label: "Create Event" },
-    { href: "/dashboard", label: "Dashboard" },
 ];
 
 export default function Header() {
