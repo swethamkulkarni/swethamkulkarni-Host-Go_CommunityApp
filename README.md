@@ -28,6 +28,10 @@ Mapping: Google Maps Platform
 Users can come and choose to attend or host an event through this page
 <img width="947" alt="home page" src="https://github.com/user-attachments/assets/c8eb9453-d820-4380-8628-d97658ac16c9" />
 
+# Navigation (Burger Menu, Responsive feature)
+<img width="653" alt="burger" src="https://github.com/user-attachments/assets/d2ad3fe7-f7dc-45bc-9bbe-d3dcec7ee975" />
+
+
 # Feature Space
 This list out the ebents that are available to attend
 <img width="922" alt="event pages" src="https://github.com/user-attachments/assets/830aa21a-37ec-493e-a667-27d0874c6516" />
