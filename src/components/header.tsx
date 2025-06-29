@@ -1,18 +1,45 @@
+
 "use client";
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Layers, Menu } from "lucide-react";
+import { useAppContext } from "@/context/AppContext";
 
-const navItems = [
+const defaultNavItems = [
   { href: "/", label: "Discover" },
   { href: "/spaces/register", label: "List a Space" },
   { href: "/events/create", label: "Create Event" },
   { href: "/dashboard", label: "Dashboard" },
 ];
 
+const attendeeNavItems = [
+    { href: "/", label: "Discover" },
+    { href: "/dashboard", label: "Dashboard" },
+];
+
+const hostNavItems = [
+    { href: "/spaces/register", label: "List a Space" },
+    { href: "/events/create", label: "Create Event" },
+    { href: "/dashboard", label: "Dashboard" },
+];
+
 export default function Header() {
+  const { userRole } = useAppContext();
+
+  const getNavItems = () => {
+    if (userRole === 'attendee') {
+      return attendeeNavItems;
+    }
+    if (userRole === 'host') {
+      return hostNavItems;
+    }
+    return defaultNavItems;
+  }
+
+  const navItems = getNavItems();
+
   return (
     <header className="bg-card/80 backdrop-blur-lg border-b sticky top-0 z-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -27,7 +54,7 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
             {navItems.map((item) => (
-              <Link key={item.href} href={item.href} className="transition-colors hover:text-primary">
+              <Link key={item.label} href={item.href} className="transition-colors hover:text-primary">
                 {item.label}
               </Link>
             ))}
@@ -65,7 +92,7 @@ export default function Header() {
                 </Link>
                 <nav className="grid gap-6 text-lg font-medium">
                   {navItems.map((item) => (
-                    <Link key={item.href} href={item.href} className="text-muted-foreground hover:text-foreground">
+                    <Link key={item.label} href={item.href} className="text-muted-foreground hover:text-foreground">
                       {item.label}
                     </Link>
                   ))}

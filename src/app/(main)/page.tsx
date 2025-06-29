@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
@@ -7,6 +7,8 @@ import { MapPin, Users, Calendar as CalendarIcon, Tag, Wifi, ParkingSquare, Proj
 import type { Space, Event } from "@/lib/types";
 import MapComponent from "@/components/map";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import HomeHero from "@/components/home-hero";
+import { Button } from "@/components/ui/button";
 
 const mockSpaces: Space[] = [
   { id: '1', name: 'The Creative Loft', description: '', address: '123 Fake St, London', postcode: 'E2 8AA', borough: 'Hackney', capacity: 50, amenities: ['wifi', 'projector'], hourlyRate: 100, images: ['https://placehold.co/600x400.png'], ownerId: '', rating: 4.8, category: 'Creative Studio', isAccessible: true, lat: 51.5293, lng: -0.0519 },
@@ -36,22 +38,7 @@ const AmenityIcon = ({ amenity }: { amenity: string }) => {
 export default function HomePage() {
   return (
     <div>
-      <section className="py-20 md:py-32 text-center">
-        <div className="container mx-auto">
-          <h1 className="text-4xl md:text-6xl font-bold font-headline mb-4 text-foreground">Your Community. Your Space.</h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-            Are you here to discover local happenings or to create your own?
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-              <Button size="lg" asChild className="w-full sm:w-auto">
-                  <Link href="#upcoming-events">Find an Event to Attend</Link>
-              </Button>
-              <Button size="lg" variant="outline" asChild className="w-full sm:w-auto">
-                  <Link href="#featured-spaces">Find a Space to Host</Link>
-              </Button>
-          </div>
-        </div>
-      </section>
+      <HomeHero />
 
       <section id="featured-spaces" className="py-16 bg-secondary">
         <div className="container mx-auto">
